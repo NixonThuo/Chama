@@ -1,7 +1,7 @@
 <?php require_once('../Connections/conn.php'); ?>
 <?php
 if (!isset($_SESSION)) {
-  session_start();
+	session_start();
 }
 $MM_authorizedUsers = "0";
 $MM_donotCheckaccess = "false";
@@ -9,72 +9,72 @@ $MM_donotCheckaccess = "false";
 // *** Restrict Access To Page: Grant or deny access to this page
 function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
   // For security, start by assuming the visitor is NOT authorized. 
-  $isValid = False; 
+	$isValid = False; 
 
   // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
   // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
-  if (!empty($UserName)) { 
+	if (!empty($UserName)) { 
     // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
     // Parse the strings into arrays. 
-    $arrUsers = Explode(",", $strUsers); 
-    $arrGroups = Explode(",", $strGroups); 
-    if (in_array($UserName, $arrUsers)) { 
-      $isValid = true; 
-    } 
+		$arrUsers = Explode(",", $strUsers); 
+		$arrGroups = Explode(",", $strGroups); 
+		if (in_array($UserName, $arrUsers)) { 
+			$isValid = true; 
+		} 
     // Or, you may restrict access to only certain users based on their username. 
-    if (in_array($UserGroup, $arrGroups)) { 
-      $isValid = true; 
-    } 
-    if (($strUsers == "") && false) { 
-      $isValid = true; 
-    } 
-  } 
-  return $isValid; 
+		if (in_array($UserGroup, $arrGroups)) { 
+			$isValid = true; 
+		} 
+		if (($strUsers == "") && false) { 
+			$isValid = true; 
+		} 
+	} 
+	return $isValid; 
 }
 
 $MM_restrictGoTo = "index.php";
 if (!((isset($_SESSION['clerk'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['clerk'], $_SESSION['MM_UserGroup'])))) {   
-  $MM_qsChar = "?";
-  $MM_referrer = $_SERVER['PHP_SELF'];
-  if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
-  if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) > 0) 
-  $MM_referrer .= "?" . $_SERVER['QUERY_STRING'];
-  $MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
-  header("Location: ". $MM_restrictGoTo); 
-  exit;
+	$MM_qsChar = "?";
+	$MM_referrer = $_SERVER['PHP_SELF'];
+	if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
+	if (isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']) > 0) 
+		$MM_referrer .= "?" . $_SERVER['QUERY_STRING'];
+	$MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
+	header("Location: ". $MM_restrictGoTo); 
+	exit;
 }
 ?>
 
 <?php
 if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
+	function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+	{
+		if (PHP_VERSION < 6) {
+			$theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+		}
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+		$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
+		switch ($theType) {
+			case "text":
+			$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+			break;    
+			case "long":
+			case "int":
+			$theValue = ($theValue != "") ? intval($theValue) : "NULL";
+			break;
+			case "double":
+			$theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+			break;
+			case "date":
+			$theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+			break;
+			case "defined":
+			$theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+			break;
+		}
+		return $theValue;
+	}
 }
 
 mysql_select_db($database_conn, $conn);
@@ -92,7 +92,7 @@ $totalRows_chama = mysql_num_rows($chama);
 $maxRows_mem_contr = 10;
 $pageNum_mem_contr = 0;
 if (isset($_GET['pageNum_mem_contr'])) {
-  $pageNum_mem_contr = $_GET['pageNum_mem_contr'];
+	$pageNum_mem_contr = $_GET['pageNum_mem_contr'];
 }
 $startRow_mem_contr = $pageNum_mem_contr * $maxRows_mem_contr;
 
@@ -103,10 +103,10 @@ $mem_contr = mysql_query($query_limit_mem_contr, $conn) or die(mysql_error());
 $row_mem_contr = mysql_fetch_assoc($mem_contr);
 
 if (isset($_GET['totalRows_mem_contr'])) {
-  $totalRows_mem_contr = $_GET['totalRows_mem_contr'];
+	$totalRows_mem_contr = $_GET['totalRows_mem_contr'];
 } else {
-  $all_mem_contr = mysql_query($query_mem_contr);
-  $totalRows_mem_contr = mysql_num_rows($all_mem_contr);
+	$all_mem_contr = mysql_query($query_mem_contr);
+	$totalRows_mem_contr = mysql_num_rows($all_mem_contr);
 }
 $totalPages_mem_contr = ceil($totalRows_mem_contr/$maxRows_mem_contr)-1;
 
@@ -124,171 +124,89 @@ $totalRows_newMem = mysql_num_rows($newMem);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Ruai Chama Group</title>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Ruai Chama Group</title>
 
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/animate.css">
 	<link href="../css/animate.min.css" rel="stylesheet"> 
 	<link href="../css/style.css" rel="stylesheet" />
 	<link href="../SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-  </head>
-  <body>	
+    <script src="../SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+</head>
+<body>	
 	<header id="header">
-        <?php include('../header/clerk_head.php');?>		
-    </header><!--/header-->	
+		<?php include('../header/clerk_head.php');?>		
+	</header><!--/header-->	
 	<hr>
 	
 	<div class="services">
 		<div class="container">
-		<div class="col-md-12" align="center"><?php echo "<h2>"."Next meeting will be on ".$row_nextDate['next_cont']."</h2>"; ?></div>
-			<div class="col-md-3">
-		<!--new members-->	
-		<table width="200" border="1" id="newMember">
-				<caption>
+			<!--<div class="col-md-12" align="center"><?php echo "<h2>"."Next meeting will be on ".$row_nextDate['next_cont']."</h2>"; ?></div>-->
+			<div class="col-md-12">
+				<!--new members-->	
+				<table  class = "table table-striped" width="200" border="1" id="newMember">
+					<caption>
 						CHAMA ACCOUNT
-						</caption>
-				<tr>
+					</caption>
+					<tr>
 						<th scope="col">Total Saving</th>
 						<th scope="col"><?php echo $row_chama['acc_total']; ?></th>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
 						<td> Chama Account Balance</td>
 						<td><?php echo $row_chama['acc_bal']; ?></td>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
 						<td>Total Loans</td>
 						<td><?php echo $row_chama['loan']; ?></td>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
 						<td>Funded Projects</td>
 						<td><?php echo $row_chama['project']; ?></td>
-				</tr>
-				<tr>
+					</tr>
+					<tr>
 						<td>Total Interest</td>
 						<td>&nbsp;<?php echo $row_chama['payed_interest']; ?></td>
-				</tr>
-				<tr style="color:#F00">
+					</tr>
+					<tr style="color:#F00">
 						<td>New Balance</td>
 						<td><?php echo $row_chama['acc_bal']; ?></td>
-				</tr>
-		</table>
-		<!--new members-->
-			</div>
-			<div class="col-md-3">
-		<!--new members-->		
-    	<!--new members-->
-		
-		<table width="200" border="1" id="newMember">
-				<caption>
-						MEMBERS CONTRIBUTIONS
-						</caption>
-				<tr>
-						<th scope="col">Names</th>
-						<th scope="col">id no</th>
-						<th scope="col">contributions</th>
-						<th scope="col">Total</th>
-						
-				</tr>
-				<?php if ($totalRows_mem_contr > 0) { // Show if recordset not empty ?>
-						<?php do { ?><tr>
-								<td><?php echo $row_mem_contr['mem_fname']; ?></td>
-								<td><?php echo $row_mem_contr['mem_idno']; ?></td>
-								<td><?php echo $row_mem_contr['no_of_cont']; ?></td>
-								<td><?php echo $row_mem_contr['total_cont']; ?></td>
-								</tr>
-								<?php } while ($row_mem_contr = mysql_fetch_assoc($mem_contr)); ?>
-								<?php } // Show if recordset not empty ?>
-				
-		</table>
-		
-			</div>
-			<div class="col-md-3">
-		<!--new members-->		
-    	<!--new members-->
-			<table width="250"  border="1" id="newMember">
-					<caption>
-							LOAN MANAGEMENT
-							</caption>
-					<tr>
-							<th scope="col">Mem no</th>
-							<th scope="col">Loan</th>
-							<th scope="col">Awarded</th>
-							<th scope="col">&nbsp;</th>
 					</tr>
-					
-							<?php if ($totalRows_loan > 0) { // Show if recordset not empty ?>
-									<?php do { ?><tr>
-											<td><?php echo $row_loan['mem_idno']; ?></td>
-											<td><?php echo $row_loan['loan_amound']; ?></td>
-											<td><?php if($row_loan['loan']==1){echo 'Yes';}else{echo "waiting approval";}; ?></td>
-											<td>&nbsp;</td>
-											</tr>
-											<?php } while ($row_loan = mysql_fetch_assoc($loan)); ?>
-									<?php } // Show if recordset not empty ?>
-					
-			</table>
+				</table>
+				<!--new members-->
 			</div>
-			<div class="col-md-3">
-		<!--new members-->		
-    	<!--new members-->
-		
-		<table width="200" border="1" id="newMember">
-				<caption>
-						NEW MEMBERS
-						</caption>
-				<tr>
-						<th scope="col">fisrtname</th>
-						<th scope="col">lastname</th>
-						<th scope="col">categogy</th>
-						<th scope="col">&nbsp;</th>
-				</tr>
-				<?php if ($totalRows_newMem > 0) { // Show if recordset not empty ?>
-						<?php do { ?>
-						<tr>
-								<td><?php echo $row_newMem['f_name']; ?></td>
-								<td><?php echo $row_newMem['l_name']; ?></td>
-								<td><?php echo $row_newMem['category']; ?></td>
-								<td><a href="clerk.php?id_no<?php echo $row_newMem['id_no']; ?>"><?php echo $row_newMem['id_no']; ?></a></td>
-						</tr>
-								<?php } while ($row_newMem = mysql_fetch_assoc($newMem)); ?>
-								<?php } // Show if recordset not empty ?>
-				
-		</table>
-		
-			</div>
-		</div>			
-	</div>	
-	<div class="sub-footer">
-		<?php include('../footer/sub_footer.php');?>		
 	</div>
-	
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../js/jquery.js"></script>		
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>	
-	<script src="../js/wow.min.js"></script>
-	<script>
-wow = new WOW(
-	 {
-	
-		}	) 
-		.init();
-	</script>	
-  </body>
+</div>			
+<div class="sub-footer">
+	<?php include('../footer/sub_footer.php');?>		
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery.js"></script>		
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.min.js"></script>	
+<script src="../js/wow.min.js"></script>
+<script>
+	wow = new WOW(
+	{
+
+	}	) 
+	.init();
+</script>	
+</body>
 </html>
 <?php
 mysql_free_result($nextDate);
