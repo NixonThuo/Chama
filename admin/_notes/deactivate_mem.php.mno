@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_getMem" value="name:id;datatype:int,name:mem_fname;datatype:string,name:mem_lname;datatype:string,name:mem_idno;datatype:int,name:amound;datatype:int,name:date_ex;datatype:timestamp,name:clerk_name;datatype:string,name:next_date;datatype:date,name:total_cont;datatype:int,name:no_of_cont;datatype:int,name:target;datatype:int,name:loan;datatype:int,name:approve;datatype:int,name:loan_amound;datatype:int" />
+	<infoitem key="UD_profile" value="name:id;datatype:int,name:f_name;datatype:string,name:l_name;datatype:string,name:id_no;datatype:int,name:username;datatype:string,name:password;datatype:string,name:reg_date;datatype:timestamp,name:access;datatype:int,name:all;datatype:int" />
+</info>

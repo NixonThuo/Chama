@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_contDates" value="name:id;datatype:int,name:today_ex;datatype:date,name:next_cont;datatype:date" />
+</info>

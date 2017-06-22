@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_chama_acc" value="name:id;datatype:int,name:acc_total;datatype:int,name:acc_bal;datatype:int,name:loan;datatype:int" />
+	<infoitem key="UD_loans" value="name:id;datatype:int,name:names;datatype:string,name:id_no;datatype:int,name:borrow_date;datatype:date,name:request_date;datatype:timestamp,name:due_date;datatype:date,name:request_amound;datatype:int,name:add_more;datatype:int,name:approved;datatype:int,name:to_pay;datatype:int,name:payed;datatype:int,name:req_reason;datatype:string,name:decline_reason;datatype:string,name:me;datatype:int,name:penalty;datatype:int" />
+	<infoitem key="UD_getLoan" value="name:id;datatype:int,name:names;datatype:string,name:id_no;datatype:int,name:borrow_date;datatype:date,name:request_date;datatype:timestamp,name:due_date;datatype:date,name:request_amound;datatype:int,name:add_more;datatype:int,name:approved;datatype:int,name:to_pay;datatype:int,name:payed;datatype:int,name:req_reason;datatype:string,name:decline_reason;datatype:string,name:me;datatype:int,name:penalty;datatype:int" />
+	<infoitem key="UD_get_mem" value="name:id;datatype:int,name:mem_fname;datatype:string,name:mem_lname;datatype:string,name:mem_idno;datatype:int,name:amound;datatype:int,name:date_ex;datatype:timestamp,name:clerk_name;datatype:string,name:next_date;datatype:date,name:total_cont;datatype:int,name:no_of_cont;datatype:int,name:target;datatype:int,name:loan;datatype:int,name:approve;datatype:int,name:loan_amound;datatype:int" />
+</info>

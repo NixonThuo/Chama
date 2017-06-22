@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+                           <!---------reservation---------->
+                           <form method="post" name="reservation" id="reservation" class="form-control" action="../beg/vacant.php">
+                              <table width="331" height="182" border="0" align="center" class="table-responsive table-stripped">
+                                  <tr>
+                                    <th colspan="2" scope="row"><center>Select Dates To View Rooms</center></th>
+                                  </tr>
+                                   <tr>
+                                    <th colspan="2" scope="row">
+									</th>
+                                  </tr>
+                                  <tr>
+                                    <th width="130" scope="row">Start date</th>
+                                    <td width="85"><label for="start" class="form-group"></label>
+                                    <input type="text" name="start" id="datepicker" class="form-control" required autocomplete="off" placeholder="Select start date"></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">End date</th>
+                                    <td><label for="end" class="form-group"></label>
+                                    <input type="text" name="end" id="datepicker2" class="form-control" required autocomplete="off" placeholder="Select end date"></td>
+                                  </tr>
+                                  <tr>
+                                    <th colspan="2" scope="row">
+                                    <input type="submit" name="search" id="search" value="Search" class="btn BTN-PRIMARY">                      
+       	   
+                                    </th>
+                                  </tr>
+                                </table> 
+                            </form>
+                            <!---------reservation---------->
+                
+      <!---->
+<script src="assets/js/jquery-1.8.2.min.js"></script>
+ <script src="assets/js/jquery-ui.min.js"></script>
+   <script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker({dateFormat:'yy/mm/dd'}); 
+  });
+  $(document).ready(function() {
+    $("#datepicker2").datepicker({dateFormat:'yy/mm/dd'}); 
+  });
+  </script>
+</body>
+</html>

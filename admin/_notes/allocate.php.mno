@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_profile" value="name:id;datatype:int,name:f_name;datatype:string,name:l_name;datatype:string,name:id_no;datatype:int,name:username;datatype:string,name:password;datatype:string,name:reg_date;datatype:timestamp,name:access;datatype:int" />
+	<infoitem key="UD_getProject" value="name:name;datatype:string,name:amount_req;datatype:int,name:allocated;datatype:int,name:desc;datatype:blob,name:start_date;datatype:date,name:end_date;datatype:date,name:id;datatype:int,name:bal;datatype:int,name:total;datatype:int" />
+	<infoitem key="UD_accChama" value="name:id;datatype:int,name:acc_total;datatype:int,name:acc_bal;datatype:int,name:loan;datatype:int,name:project;datatype:int,name:bal;datatype:int,name:respo;datatype:string,name:to_pay_interest;datatype:int,name:payed_interest;datatype:int" />
+</info>

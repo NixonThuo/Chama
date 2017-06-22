@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:id;datatype:int,name:f_name;datatype:string,name:l_name;datatype:string,name:id_no;datatype:int,name:email;datatype:string,name:gender;datatype:blob,name:username;datatype:string,name:password;datatype:string,name:reg_date;datatype:timestamp,name:photo;datatype:string,name:tel;datatype:int,name:access;datatype:int,name:category;datatype:string,name:reg_fee;datatype:int,name:next_date;datatype:date" />
+	<infoitem key="UD_checkExistance" value="name:id_no;datatype:int" />
+</info>
