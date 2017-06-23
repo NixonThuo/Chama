@@ -122,6 +122,57 @@ $newMem = mysql_query($query_newMem, $conn) or die(mysql_error());
 $row_newMem = mysql_fetch_assoc($newMem);
 $totalRows_newMem = mysql_num_rows($newMem);
 ?>
+
+<?php
+//require('../fpdf.php');
+require('../fpdf/mysql_table.php');
+class PDF extends PDF_MySQL_Table{
+	function Header(){
+    //$this->Image("../images/sample_signature",10,6,30);
+		$this->SetFont('Arial','B',18);
+    //$this->SetFillColor(230,230,0);
+		$this->SetTextColor(221,50,50);
+		$this->Cell(0,6,"KAWA SELF HELP GROUP",0,1,'C');
+		$this->SetFont('Arial','B',14);
+		$this->Cell(0,6,"P.O BOX 555 KAWANGWARE",0,1,'C');
+		$this->SetFont('Arial','I',9);
+		$this->Cell(0,6,"Tel:25255555",0,1,'C');
+		$this->Cell(0,6,"E-mail:kawaselfhelpgroup@gmail.com",0,1,'C');
+		$this->Ln(6);
+		$this->Cell(0,6,"Member Contribution History ",0,1,'C');
+    // Line break
+		parent::Header();
+
+	}
+
+// footer
+	function Footer()
+	{
+    // Position at 1.5 cm from bottom
+		$this->SetY(-15);
+    // Arial italic 8
+		$this->SetFont('Arial','I',8);
+    // Page number
+		$this->Cell(0,6,"Taking you to your destiny",0,1,'C');
+		$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+	}
+
+}
+
+
+//PRINTING OUT DATA
+mysql_connect('localhost','root','');
+mysql_select_db('chama_group');
+
+$pdf=new PDF();
+$pdf->AddPage();
+$pdf->SetFont('Times','B',12);
+$pdf->SetTextColor(255,0,128);
+$pdf->Table($query_chama);
+$pdf->Ln(50);
+
+$pdf->Output("../pdf/history.pdf","F");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,7 +180,7 @@ $totalRows_newMem = mysql_num_rows($newMem);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Ruai Chama Group</title>
+	<title>Kawa Self Help Group</title>
 
 	<!-- Bootstrap -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -157,55 +208,62 @@ $totalRows_newMem = mysql_num_rows($newMem);
 			<!--<div class="col-md-12" align="center"><?php echo "<h2>"."Next meeting will be on ".$row_nextDate['next_cont']."</h2>"; ?></div>-->
 			<div class="col-md-12">
 				<!--new members-->	
-				<table  class = "table table-striped" width="200" border="1" id="newMember">
-					<caption>
-						CHAMA ACCOUNT
-					</caption>
-					<tr>
-						<th scope="col">Total Saving</th>
-						<th scope="col"><?php echo $row_chama['acc_total']; ?></th>
-					</tr>
-					<tr>
-						<td> Chama Account Balance</td>
-						<td><?php echo $row_chama['acc_bal']; ?></td>
-					</tr>
-					<tr>
-						<td>Total Loans</td>
-						<td><?php echo $row_chama['loan']; ?></td>
-					</tr>
-					<tr>
-						<td>Funded Projects</td>
-						<td><?php echo $row_chama['project']; ?></td>
-					</tr>
-					<tr>
-						<td>Total Interest</td>
-						<td>&nbsp;<?php echo $row_chama['payed_interest']; ?></td>
-					</tr>
-					<tr style="color:#F00">
-						<td>New Balance</td>
-						<td><?php echo $row_chama['acc_bal']; ?></td>
-					</tr>
-				</table>
-				<!--new members-->
+				<form action="" method="post" name="contribution" id="contribution">
+					<table  class = "table table-striped" width="200" border="1" id="newMember">
+						<caption>
+							CHAMA ACCOUNT
+						</caption>
+						<tr>
+							<th scope="col">Total Saving</th>
+							<th scope="col"><?php echo $row_chama['acc_total']; ?></th>
+						</tr>
+						<tr>
+							<td> Chama Account Balance</td>
+							<td><?php echo $row_chama['acc_bal']; ?></td>
+						</tr>
+						<tr>
+							<td>Total Loans</td>
+							<td><?php echo $row_chama['loan']; ?></td>
+						</tr>
+						<tr>
+							<td>Funded Projects</td>
+							<td><?php echo $row_chama['project']; ?></td>
+						</tr>
+						<tr>
+							<td>Total Interest</td>
+							<td>&nbsp;<?php echo $row_chama['payed_interest']; ?></td>
+						</tr>
+						<tr style="color:#F00">
+							<td>New Balance</td>
+							<td><?php echo $row_chama['acc_bal']; ?></td>
+						</tr>
+					</table>
+					<!--new members-->
+					<ul class="pager">
+						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, max(0, $pageNum_contr - 1), $queryString_contr); ?>">Previous</a></li>
+						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, min($totalPages_contr, $pageNum_contr + 1), $queryString_contr); ?>">Next</a></li>
+						<li><a href="../pdf/history.pdf">Print</a></li>
+					</ul>
+				</form>
 			</div>
+		</div>
+	</div>			
+	<div class="sub-footer">
+		<?php include('../footer/sub_footer.php');?>		
 	</div>
-</div>			
-<div class="sub-footer">
-	<?php include('../footer/sub_footer.php');?>		
-</div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../js/jquery.js"></script>		
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.min.js"></script>	
-<script src="../js/wow.min.js"></script>
-<script>
-	wow = new WOW(
-	{
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../js/jquery.js"></script>		
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../js/bootstrap.min.js"></script>	
+	<script src="../js/wow.min.js"></script>
+	<script>
+		wow = new WOW(
+		{
 
-	}	) 
-	.init();
-</script>	
+		}	) 
+		.init();
+	</script>	
 </body>
 </html>
 <?php
