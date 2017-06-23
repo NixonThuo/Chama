@@ -1,3 +1,5 @@
-# igonre pdf folder
+# exclude everything
+pdf/*
 
-pdf/
+# exception to the rule
+!pdf/.gitkeep 
