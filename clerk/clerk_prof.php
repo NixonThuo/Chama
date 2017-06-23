@@ -240,8 +240,6 @@ $pdf->Output("../pdf/savings.pdf","F");
 					</table>
 					<!--new members-->
 					<ul class="pager">
-						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, max(0, $pageNum_contr - 1), $queryString_contr); ?>">Previous</a></li>
-						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, min($totalPages_contr, $pageNum_contr + 1), $queryString_contr); ?>">Next</a></li>
 						<li><a href="../pdf/savings.pdf">Print</a></li>
 					</ul>
 				</form>
