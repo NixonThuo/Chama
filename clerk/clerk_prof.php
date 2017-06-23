@@ -171,7 +171,7 @@ $pdf->SetTextColor(255,0,128);
 $pdf->Table($query_chama);
 $pdf->Ln(50);
 
-$pdf->Output("../pdf/history.pdf","F");
+$pdf->Output("../pdf/savings.pdf","F");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -239,11 +239,6 @@ $pdf->Output("../pdf/history.pdf","F");
 						</tr>
 					</table>
 					<!--new members-->
-					<ul class="pager">
-						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, max(0, $pageNum_contr - 1), $queryString_contr); ?>">Previous</a></li>
-						<li><a href="<?php printf("%s?pageNum_contr=%d%s", $currentPage, min($totalPages_contr, $pageNum_contr + 1), $queryString_contr); ?>">Next</a></li>
-						<li><a href="../pdf/history.pdf">Print</a></li>
-					</ul>
 				</form>
 			</div>
 		</div>
