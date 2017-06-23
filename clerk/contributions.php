@@ -129,13 +129,9 @@ $diff=(strtotime($next)-strtotime($today))/(60*60*24);
 		<div class="container">
 			<div class="col-md-12">
 			<!--credit-->
-			<?php 
-              
-			?>
-												 
-			<?php if($row_contDate['next_cont']==$current_date){; ?>
+										 
 			<form action="" method="post" name="contributions" id="contributions">
-					<table width="877" border="1" id="newMember" align="center">
+					<table  class = "table table-striped" width="877" border="1" id="newMember" align="center">
 							<caption>
 									Members Contributions
 									</caption>
@@ -158,24 +154,14 @@ $diff=(strtotime($next)-strtotime($today))/(60*60*24);
 													<td><?php echo $row_contri['id_no']; ?></td>
 													<td><?php echo $row_contri['category']; ?></td>
 													<td><?php echo $row_contri['tel']; ?></td>
-													<td><a href="mem_cont.php?id_no=<?php echo urlencode($row_contri['id_no']);?>">Contribute</a></td>
+													<td><a href="mem_cont.php?id_no=<?php echo urlencode($row_contri['id_no']);?>">Save</a></td>
 											</tr>
 													<?php } while ($row_contri = mysql_fetch_assoc($contri)); ?>
 											<?php } // Show if recordset not empty ?>
 							
 					</table>
 			</form>
-			<p><?php }else{
-				echo "<div id='new'>";
-				echo "You cannot credit contributions!!";
-				echo "<br>";
-				echo "Today is on ".$current_date;
-				echo "<br>";
-				echo "Next Contribution is on	".$row_contDate['next_cont'];
-				echo "<h2>".$diff."	Days Remaining"."</h2>";
-				echo "</div>";}?>
-			</p>
-			<!--credit-->
+				<!--credit-->
 			</div>
 		</div>			
 	</div>	

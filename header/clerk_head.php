@@ -88,7 +88,7 @@ $totalRows_user = mysql_num_rows($user);
 							<li role="presentation"><a href="../clerk/clerk_prof.php" class="active">Home</a></li>
 							<li role="presentation"><a href="../clerk/loan.php">loan</a></li>
 							<li role="presentation"><a href="../clerk/clerk.php">New Member</a></li>
-							<li role="presentation"><a href="../clerk/contributions.php">Contributions</a></li>
+							<li role="presentation"><a href="../clerk/contributions.php">Savings</a></li>
 							<li role="presentation"><a href="../clerk/set_next_date.php">Set Dates</a></li>
 							
 							<li role="presentation"><a href="<?php echo $logoutAction ?>">Log Out</a></li>						

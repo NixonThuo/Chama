@@ -306,9 +306,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 	
 	<div class="services">
 		<div class="container">
-			<div class="col-md-3">
+			<div class="col-md-12">
 			<!--contrution history-->
-			<table width="200" border="1" id="newMember">
+			<table class="table table-striped" width="200" border="1" id="newMember">
 				<caption>Member Contribution History</caption>
 					<tr>
 							<th scope="col">Member name</th>
@@ -328,8 +328,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 					</tr>
 			</table>
 			</div>
-			<div class="col-md-3">
-			<table width="200" border="1" align="center" id="newMember">
+			<div class="col-md-4">
+			<table class="table table-striped" width="200" border="1" align="center" id="newMember">
 				<caption>Member Loan History</caption>
 					<tr>
 							<th scope="col">Member name</th>
@@ -350,10 +350,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 			</table>
 			<!--contrution history-->
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 col-md-offset-4">
 			<!--credit-->
 			<form name="form1" method="POST" action="<?php echo $editFormAction; ?>">
-					<table width="200" border="0" align="center" id="newMember">
+					<table  class="table table-striped" width="200" border="0" align="center" id="newMember">
 							<tr>
 									<th scope="col">Member Acc No</th>
 									<th scope="col"><span id="sprytextfield1">
@@ -364,12 +364,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 							<tr>
 									<td>amound</td>
 									<td><span id="sprytextfield2">
-									<label for="amound"></label>
+									<label for="amount"></label>
 									<input type="text" name="amound" id="amound">
 									<span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span></span></td>
 							</tr>
 							<tr>
-									<td colspan="2"><input type="submit" name="submit" id="submit" value="Credit"></td>
+									<td colspan="2"><input type="submit" name="submit" id="submit" value="Save"></td>
 									</tr>
 					</table>
 					<p>
