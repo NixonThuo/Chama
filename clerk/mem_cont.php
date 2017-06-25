@@ -174,14 +174,16 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 	if($row_mem_cont['loan']==1){
 	$contribute=($row_loan['to_pay']-$_POST['amound']);
 	$payed_loan=$_POST['amound'];
+	$fine_member=$_POST['Fine'];
 	
-	 $insertSQL = sprintf("INSERT INTO contributions (fname, lname, id_no, amound, payed_to,payed_loan) VALUES (%s, %s, %s, %s, %s,%s)",
+	 $insertSQL = sprintf("INSERT INTO contributions (fname, lname, id_no, amound, payed_to,payed_loan, Fine) VALUES (%s, %s, %s, %s, %s,%s, %s)",
                        GetSQLValueString($_POST['fname'], "text"),
                        GetSQLValueString($_POST['lname'], "text"),
                        GetSQLValueString($_POST['id_no'], "int"),
                        GetSQLValueString($contribute, "int"),
                        GetSQLValueString($_POST['payed_to'], "text"),
-					   GetSQLValueString($payed_loan, "int"));
+					   GetSQLValueString($payed_loan, "int"),
+	 					GetSQLValueString($fine_member, "int"));
 
   mysql_select_db($database_conn, $conn);
   $Result1 = mysql_query($insertSQL, $conn) or die(mysql_error());
@@ -222,13 +224,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 	}else{
 	$contribute=$_POST['amound'];
 	$payed_loan=0;
-	 $insertSQL = sprintf("INSERT INTO contributions (fname, lname, id_no, amound, payed_to,payed_loan) VALUES (%s, %s, %s, %s, %s,%s)",
+	$fine_member=$_POST['Fine'];
+	 $insertSQL = sprintf("INSERT INTO contributions (fname, lname, id_no, amound, payed_to,payed_loan, Fine) VALUES (%s, %s, %s, %s, %s,%s, %s)",
                        GetSQLValueString($_POST['fname'], "text"),
                        GetSQLValueString($_POST['lname'], "text"),
                        GetSQLValueString($_POST['id_no'], "int"),
                        GetSQLValueString($contribute, "int"),
                        GetSQLValueString($_POST['payed_to'], "text"),
-					   GetSQLValueString($payed_loan, "int"));
+					   GetSQLValueString($payed_loan, "int"),
+	 				   GetSQLValueString($fine_member, "int"));
 
   mysql_select_db($database_conn, $conn);
   $Result1 = mysql_query($insertSQL, $conn) or die(mysql_error());
@@ -366,6 +370,13 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 									<td><span id="sprytextfield2">
 									<label for="amount"></label>
 									<input type="text" name="amound" id="amound">
+									<span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span></span></td>
+							</tr>
+							<tr>
+									<td>Fine</td>
+									<td><span id="sprytextfield3">
+									<label for="Fine"></label>
+									<input type="text" name="Fine" id="Fine">
 									<span class="textfieldRequiredMsg">A value is required.</span><span class="textfieldInvalidFormatMsg">Invalid format.</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span></span></td>
 							</tr>
 							<tr>
