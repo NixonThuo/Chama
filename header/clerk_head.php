@@ -87,7 +87,8 @@ $totalRows_user = mysql_num_rows($user);
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a href="../clerk/clerk_prof.php" class="active">Home</a></li>
 							<li role="presentation"><a href="../clerk/loan.php">loan</a></li>
-							<li role="presentation"><a href="../clerk/clerk.php">New Member</a></li>
+              <li role="presentation"><a href="../clerk/reg_member.php">Register Member</a></li>
+							<li role="presentation"><a href="../clerk/clerk.php">Activate Member</a></li>
 							<li role="presentation"><a href="../clerk/contributions.php">Savings</a></li>
 							<li role="presentation"><a href="../clerk/set_next_date.php">Set Dates</a></li>
 							
